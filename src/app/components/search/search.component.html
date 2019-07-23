@@ -1,0 +1,60 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <mat-card class="d-flex bg-light">
+                    <div class="col-md-3">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Title" [(ngModel)]="title">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field>
+                                <mat-label>Type</mat-label>
+                                <mat-select [(ngModel)]="type">
+                                  <mat-option *ngFor="let type of typesList" [value]="type" >
+                                    {{type}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <mat-form-field>
+                                <mat-label>Year</mat-label>
+                                <mat-select [(ngModel)]="year">
+                                  <mat-option *ngFor="let year of yearsList" [value]="year">
+                                    {{year}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+                        <div class="col-md-3 mt-2">
+                                <button mat-raised-button color="primary" class="flex-grow-1" (click)="searchResults()" [disabled]="isLoading"><b *ngIf="!isLoading">Search</b><b *ngIf="isLoading">Loading....</b></button>
+                        </div>
+            </mat-card>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let search of searchList">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image">
+                        <img [src]="search.Poster" width="50" height="50" alt="Photo">
+                    </div>
+                    <mat-card-title>{{search.Title}}</mat-card-title>
+                    <mat-card-subtitle>{{search.Year}}</mat-card-subtitle>
+                </mat-card-header>
+                
+    
+                <mat-card-content>
+                  <p> {{search.Plot}}</p>
+                </mat-card-content>
+              
+                <mat-card-actions class="d-flex">
+                    <button mat-raised-button color="warn" class="flex-grow-1" [routerLink]="['/search',search.imdbID]">View</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

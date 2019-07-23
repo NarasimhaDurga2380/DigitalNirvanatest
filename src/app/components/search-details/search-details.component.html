@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-5 border-right">
+                <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                        <div> <a href="#" *ngIf="searchedObj.Poster"><img [src]="searchedObj.Poster"></a></div>
+                    </div>
+                </article>
+            </aside>
+            <aside class="col-sm-7">
+                <article class="card-body p-5">
+                    <h3 class="title mb-3">{{searchedObj.Title}}</h3>
+                    <ng-container *ngFor="let srch of searchedObj | keyvalue">
+                    <dl class="param param-feature" *ngIf="srch.key != 'Ratings'; else rating">
+                        <dt>{{srch.key}}</dt>
+                        <dd>{{srch.value}}</dd>
+                    </dl>
+                    <ng-template #rating>
+                         <ul>
+                            <li *ngFor="let rate of srch.value">{{rate.Source}}:{{rate.Value}}</li>
+                         </ul>
+                    </ng-template>
+                </ng-container>
+                </article>
+            </aside>
+        </div>
+    </div>
+
+</div>
